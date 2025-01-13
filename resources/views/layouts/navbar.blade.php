@@ -6,7 +6,7 @@
             </svg>
         </label>
     </div>
-    <div class="flex-1 px-2 mx-2">Dashboard</div>
+    <div class="flex-1 px-2 mx-2">@yield('title')</div>
     <div class="flex-none">
         <!-- Profile dropdown -->
         <div class="dropdown dropdown-end">
