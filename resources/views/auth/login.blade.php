@@ -31,9 +31,9 @@
 
                     <div class="form-control">
                         <label class="label">
-                            <span class="label-text">username</span>
+                            <span class="label-text">NIP / NRP</span>
                         </label>
-                        <input type="text" name="Username" placeholder="nip/nrp" class="input input-bordered"
+                        <input type="text" id="login" name="login" value="{{ old('login') }}" placeholder="nip/nrp" class="input input-bordered" minlength="6" maxlength="18"
                             required />
                     </div>
 
