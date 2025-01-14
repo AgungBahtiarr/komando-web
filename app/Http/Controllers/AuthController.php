@@ -16,21 +16,20 @@ class AuthController extends Controller
     {
         $request->validate([
             'login' => 'required',
-            'password' =>'required',
+            'password' => 'required',
         ], [
-                'login.required'=>'NRP atau NIP wajib diisi',
-                'password.required'=>'Password wajib diisi',
-            ]);
-        $login_type =preg_match('/^\d+$/', $request->input('login'))
-        ? 'nrp'
-        : 'nip';
+            'login.required' => 'NRP atau NIP wajib diisi',
+            'password.required' => 'Password wajib diisi',
+        ]);
+        $login_type = preg_match('/^\d+$/', $request->input('login'))
+            ? 'nrp'
+            : 'nip';
 
         $request->merge([$login_type => $request->input('login')]);
 
         if (Auth::attempt($request->only($login_type, 'password'))) {
             return redirect()->intended('dashboard');
         } else {
-            //dd($request->all());
             return back()->withInput()->withErrors(['login' => 'Kredensial Login Invalid.']);
         }
     }
@@ -40,5 +39,4 @@ class AuthController extends Controller
         Auth::logout();
         return redirect('login');
     }
-
 }
