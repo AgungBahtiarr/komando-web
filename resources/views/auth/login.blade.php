@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="bumblebee">
+<html lang="en" data-theme="komando">
 
 <head>
     <meta charset="UTF-8">
@@ -33,8 +33,8 @@
                         <label class="label">
                             <span class="label-text">NIP / NRP</span>
                         </label>
-                        <input type="text" id="login" name="login" value="{{ old('login') }}" placeholder="nip/nrp" class="input input-bordered" minlength="6" maxlength="18"
-                            required />
+                        <input type="text" id="login" name="login" value="{{ old('login') }}"
+                            placeholder="nip/nrp" class="input input-bordered" minlength="6" maxlength="18" required />
                     </div>
 
                     <div class="form-control">

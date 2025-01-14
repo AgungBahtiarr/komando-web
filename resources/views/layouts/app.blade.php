@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="lofi">
+<html lang="en" data-theme="komando">
 
 <head>
     <meta charset="UTF-8">
