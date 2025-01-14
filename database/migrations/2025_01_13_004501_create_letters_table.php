@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('letters', function (Blueprint $table) {
             $table->id();
             $table->string('number');
-            $table->subject('string');
-            $table->sender('string');
+            $table->string('subject');
+            $table->string('sender');
             $table->enum('status', []);
             $table->enum('classification', []);
             $table->date('rec_date');
