@@ -15,7 +15,7 @@ class UserSeeder extends Seeder
     {
         $admin = User::create([
             'name' => 'admin',
-            'nrp' => '1122334455',
+            'nrp' => '112233',
             'password' => '1',
         ]);
 
