@@ -16,10 +16,12 @@ return new class extends Migration
             $table->string('number');
             $table->string('subject');
             $table->string('sender');
-            $table->enum('status', []);
-            $table->enum('classification', []);
+            $table->enum('status', ['setum', 'komandan', 'staf', 'pasi', 'bati', 'kasi']);
+            $table->enum('classification', ['R', 'B', 'U', 'ST', 'STR']);
             $table->date('rec_date');
             $table->unsignedBigInteger('created_by');
+            $table->foreign('created_by')->constrained()->cascadeOnDelete()
+            ->references('id')->on('users');
             $table->timestamps();
         });
     }
