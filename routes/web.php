@@ -12,7 +12,13 @@ Route::middleware(['guest'])->group(function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/letter', [LetterController::class, 'index'])->name('letter');
+
+
+    Route::prefix('letter')->group(function () {
+        Route::get('', [LetterController::class, 'index'])->name('letter');
+        Route::post('store', [LetterController::class, 'store'])->name('letter.store');
+    });
+
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 

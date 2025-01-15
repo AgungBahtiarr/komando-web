@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreLetterRequest;
 use App\Http\Requests\UpdateLetterRequest;
 use App\Models\Letter;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LetterController extends Controller
 {
@@ -13,7 +14,7 @@ class LetterController extends Controller
      */
     public function index()
     {
-        $letters = [];
+        $letters = Letter::all();
         return view('letter.index', compact('letters'));
     }
 
@@ -28,9 +29,22 @@ class LetterController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreLetterRequest $request)
+    public function store(Request $request)
     {
-        //
+        $data = [
+            'number' => $request->number,
+            'rec_date' => $request->rec_date,
+            'subject' => $request->subject,
+            'sender' => $request->sender,
+            'classification' => $request->classification,
+            'note' => $request->note,
+            'letter' => $request->letter,
+            'created_by' => Auth::id(),
+        ];
+
+        // return $data;
+        $letter = Letter::create($data);
+        return redirect(route('letter'));
     }
 
     /**

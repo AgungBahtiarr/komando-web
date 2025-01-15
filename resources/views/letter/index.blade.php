@@ -59,72 +59,47 @@
                             <th>Perihal</th>
                             <th>Dari Instansi</th>
                             <th>Klasifikasi</th>
-                            <th>Status</th>
                             <th>File</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>2023-10-20</td>
-                            <td>001/SM/X/2023</td>
-                            <td>Revisi</td>
-                            <td>Poliwangi B.E-ka</td>
-                            <td><span class="badge badge-warning">R</span></td>
-                            <td><span class="badge badge-error">Belum Disposisi</span></td>
-                            <td>
-                                <a href="#" class="btn btn-sm btn-ghost">
-                                    <i class="fas fa-file-pdf text-red-500"></i>
-                                </a>
-                            </td>
-                            <td>
-                                <div class="flex gap-2">
-                                    <button class="btn btn-sm btn-success" onclick="modalDisposisi.showModal()">
-                                        <i class="fas fa-paper-plane"></i>
-                                    </button>
-                                    <button class="btn btn-sm btn-info">
-                                        <i class="fas fa-eye"></i>
-                                    </button>
-                                    <button class="btn btn-sm btn-warning">
-                                        <i class="fas fa-edit"></i>
-                                    </button>
-                                    <button class="btn btn-sm btn-error">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>2023-10-19</td>
-                            <td>002/SM/X/2023</td>
-                            <td>Terdakwa</td>
-                            <td>Sponsorify</td>
-                            <td><span class="badge badge-info">B</span></td>
-                            <td><span class="badge badge-success">Sudah Disposisi</span></td>
-                            <td>
-                                <a href="#" class="btn btn-sm btn-ghost">
-                                    <i class="fas fa-file-pdf text-red-500"></i>
-                                </a>
-                            </td>
-                            <td>
-                                <div class="flex gap-2">
-                                    <button class="btn btn-sm btn-success" disabled>
-                                        <i class="fas fa-paper-plane"></i>
-                                    </button>
-                                    <button class="btn btn-sm btn-info">
-                                        <i class="fas fa-eye"></i>
-                                    </button>
-                                    <button class="btn btn-sm btn-warning">
-                                        <i class="fas fa-edit"></i>
-                                    </button>
-                                    <button class="btn btn-sm btn-error">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
+
+                        @foreach ($letters as $letter)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $letter->rec_date }}</td>
+                                <td>{{ $letter->number }}</td>
+                                <td>{{ $letter->subject }}</td>
+                                <td>{{ $letter->sender }}</td>
+                                <td><span class="badge badge-warning">{{ $letter->classification }}</span></td>
+                                <td>
+                                    <a href="#" class="btn btn-sm btn-ghost">
+                                        <i class="fas fa-file-pdf text-red-500"></i>
+                                    </a>
+                                </td>
+                                <td>
+                                    <div class="flex gap-2">
+                                        <button class="btn btn-sm btn-success" onclick="modalDisposisi.showModal()">
+
+                                            <i class="fas fa-paper-plane"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-info">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-warning">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-error">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                        @include('disposition.create')
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+
+
                     </tbody>
                 </table>
             </div>
@@ -142,45 +117,35 @@
         </div>
     </div>
 
-    <!-- Modal Disposisi -->
-    <dialog id="modalDisposisi" class="modal">
-        <div class="modal-box">
-            <h3 class="font-bold text-lg mb-4">Form Disposisi Surat</h3>
-            <form method="dialog">
-                <div class="form-control mb-4">
-                    <label class="label">
-                        <span class="label-text">Tujuan Disposisi</span>
-                    </label>
-                    <select class="select select-bordered w-full">
-                        <option disabled selected>Pilih Tujuan</option>
-                        <option>Kepala Bagian</option>
-                        <option>Sekretaris</option>
-                        <option>Staff</option>
-                    </select>
-                </div>
-                <div class="form-control mb-4">
-                    <label class="label">
-                        <span class="label-text">Catatan Disposisi</span>
-                    </label>
-                    <textarea class="textarea textarea-bordered" placeholder="Tulis catatan..."></textarea>
-                </div>
-                <div class="form-control mb-4">
-                    <label class="label">
-                        <span class="label-text">Tingkat Urgensi</span>
-                    </label>
-                    <select class="select select-bordered w-full">
-                        <option disabled selected>Pilih Urgensi</option>
-                        <option>Segera</option>
-                        <option>Normal</option>
-                        <option>Tidak Urgent</option>
-                    </select>
-                </div>
-                <div class="modal-action">
-                    <button class="btn btn-error">Batal</button>
-                    <button class="btn btn-success">Kirim Disposisi</button>
-                </div>
-            </form>
-        </div>
-    </dialog>
-
 @endsection
+
+{{-- <tr>
+    <td>2</td>
+    <td>2023-10-19</td>
+    <td>002/SM/X/2023</td>
+    <td>Terdakwa</td>
+    <td>Sponsorify</td>
+    <td><span class="badge badge-info">B</span></td>
+    <td><span class="badge badge-success">Sudah Disposisi</span></td>
+    <td>
+        <a href="#" class="btn btn-sm btn-ghost">
+            <i class="fas fa-file-pdf text-red-500"></i>
+        </a>
+    </td>
+    <td>
+        <div class="flex gap-2">
+            <button class="btn btn-sm btn-success" disabled>
+                <i class="fas fa-paper-plane"></i>
+            </button>
+            <button class="btn btn-sm btn-info">
+                <i class="fas fa-eye"></i>
+            </button>
+            <button class="btn btn-sm btn-warning">
+                <i class="fas fa-edit"></i>
+            </button>
+            <button class="btn btn-sm btn-error">
+                <i class="fas fa-trash"></i>
+            </button>
+        </div>
+    </td>
+</tr> --}}
